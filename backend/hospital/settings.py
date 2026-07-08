@@ -30,7 +30,11 @@ SECRET_KEY = 'django-insecure-4l9&tgr8ypwake=35*4sy49es5nv)9tlz-z69d7$465gn)y91-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "aurora-health-backend.onrender.com",
+]
 
 
 # Application definition
@@ -133,7 +137,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
+CORS_ALLOW_ALL_ORIGINS = True
