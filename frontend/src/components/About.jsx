@@ -18,11 +18,7 @@ function About() {
         </h2>
 
         <p>
-          At MedCare Hospital, we combine advanced medical technology with
-          compassionate healthcare professionals to provide personalized
-          treatment for every patient. From preventive care to specialized
-          treatments, your well-being is always at the center of everything
-          we do.
+         Aurora Health combines clinical expertise with advanced medical technology to deliver comprehensive healthcare for patients of every age. From preventive care to complex treatments, our multidisciplinary team focuses on providing safe, ethical, and compassionate medical services in a patient-centered environment.
         </p>
 
         <div className="about-list">

@@ -9,6 +9,10 @@ import { FaPhoneAlt } from "react-icons/fa";
 import api from "../services/api";
 
 function ContactSection() {
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,12 +27,19 @@ function ContactSection() {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
+    setLoading(true);
+    setMessage("");
+
     try {
+
       await api.post("contact/", formData);
 
-      alert("Thank you! Your message has been sent successfully.");
+      setMessage(
+        "✅ Thank you for reaching out. Our team will get back to you shortly."
+      );
 
       setFormData({
         name: "",
@@ -37,13 +48,22 @@ function ContactSection() {
       });
 
     } catch (err) {
+
       console.log(err);
-      alert("Unable to send your message. Please try again.");
+
+      setMessage(
+        "❌ Unable to send your message. Please try again."
+      );
+
     }
+
+    setLoading(false);
+
   };
 
   return (
-    <section className="contact">
+
+    <section className="contact" id="contact">
 
       <div className="contact-info">
 
@@ -56,41 +76,66 @@ function ContactSection() {
         </h2>
 
         <p>
-          Whether you have questions about our services, need help booking an
-          appointment, or require emergency assistance, our team is always
-          ready to help.
+          Have a question about our services, need help scheduling an
+          appointment, or require immediate medical assistance? Our
+          dedicated team is available around the clock to provide
+          the support and guidance you need.
         </p>
 
         <div className="contact-item">
+
           <FaPhoneAlt />
+
           <div>
+
             <h4>Emergency Helpline</h4>
+
             <span>+91 98765 43210</span>
+
           </div>
+
         </div>
 
         <div className="contact-item">
+
           <FaEnvelope />
+
           <div>
-            <h4>Email</h4>
-            <span>support@medcarehospital.com</span>
+
+            <h4>Email Address</h4>
+
+            <span>support@aurorahealth.com</span>
+
           </div>
+
         </div>
 
         <div className="contact-item">
+
           <FaLocationDot />
+
           <div>
-            <h4>Address</h4>
+
+            <h4>Location</h4>
+
             <span>Mumbai, Maharashtra, India</span>
+
           </div>
+
         </div>
 
         <div className="contact-item">
+
           <FaClock />
+
           <div>
+
             <h4>Working Hours</h4>
-            <span>Open 24 Hours • 7 Days a Week</span>
+
+            <span>24 Hours • 7 Days a Week</span>
+
           </div>
+
         </div>
 
       </div>
@@ -121,20 +166,37 @@ function ContactSection() {
         <textarea
           rows="7"
           name="message"
-          placeholder="How can we help you?"
+          placeholder="Write your message..."
           value={formData.message}
           onChange={handleChange}
           required
         />
 
-        <button type="submit">
-          Send Message
+        {message &&
+
+          <p className="form-message">
+
+            {message}
+
+          </p>
+
+        }
+
+        <button
+          type="submit"
+          disabled={loading}
+        >
+
+          {loading ? "Sending..." : "Send Message"}
+
         </button>
 
       </form>
 
     </section>
+
   );
+
 }
 
 export default ContactSection;

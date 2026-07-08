@@ -78,13 +78,15 @@ function DoctorSection() {
                                     ? "Available Today"
                                     : "Currently Unavailable"}
                             </span>
-
-                            <button>
-
-                                <FaCalendarCheck />
-
-                                Book Consultation
-
+                            <button
+                              onClick={() =>
+                                document
+                                  .getElementById("appointment")
+                                  ?.scrollIntoView({ behavior: "smooth" })
+                              }
+                            >
+                              <FaCalendarCheck />
+                              Book Appointment
                             </button>
 
                         </div>

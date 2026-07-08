@@ -3,6 +3,8 @@ import api from "../services/api";
 
 function AppointmentForm() {
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const [formData, setFormData] = useState({
     doctor: "",
@@ -22,19 +24,24 @@ function AppointmentForm() {
   }, []);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+    setMessage("");
+
     try {
       await api.post("appointments/create/", formData);
 
-      alert("Appointment booked successfully!");
+      setMessage(
+        "✅ Your appointment request has been submitted successfully. Our team will contact you shortly."
+      );
 
       setFormData({
         doctor: "",
@@ -47,26 +54,34 @@ function AppointmentForm() {
       });
 
     } catch (error) {
-      console.log(error);
-      alert("Something went wrong.");
+      console.error(error);
+
+      setMessage(
+        "❌ Something went wrong. Please try again after a few moments."
+      );
     }
+
+    setLoading(false);
   };
 
   return (
-    <section className="appointment">
+    <section className="appointment" id="appointment">
 
       <span className="section-tag">
         BOOK APPOINTMENT
       </span>
 
-      <h2>Schedule Your Consultation</h2>
+      <h2>
+        Schedule Your Consultation
+      </h2>
 
-      <p>
-        Fill in your details below and our team will confirm your appointment
-        as soon as possible.
+      <p className="section-description">
+        Choose your preferred specialist and submit your appointment request.
+        Our healthcare team will confirm your booking at the earliest
+        convenience.
       </p>
 
-      <form onSubmit={handleSubmit}>
+      <form className="appointment-form" onSubmit={handleSubmit}>
 
         <select
           name="doctor"
@@ -74,14 +89,16 @@ function AppointmentForm() {
           onChange={handleChange}
           required
         >
-          <option value="">Select Doctor</option>
+          <option value="">
+            Select a Doctor
+          </option>
 
           {doctors.map((doctor) => (
             <option
               key={doctor.id}
               value={doctor.id}
             >
-              {doctor.name}
+              Dr. {doctor.name} — {doctor.specialization}
             </option>
           ))}
 
@@ -106,7 +123,7 @@ function AppointmentForm() {
         />
 
         <input
-          type="text"
+          type="tel"
           name="phone"
           placeholder="Phone Number"
           value={formData.phone}
@@ -133,14 +150,23 @@ function AppointmentForm() {
         <textarea
           rows="5"
           name="symptoms"
-          placeholder="Describe your symptoms"
+          placeholder="Briefly describe your symptoms or reason for your visit..."
           value={formData.symptoms}
           onChange={handleChange}
           required
         />
 
-        <button type="submit">
-          Request Appointment
+        {message && (
+          <div className="form-message">
+            {message}
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Submitting..." : "Request Appointment"}
         </button>
 
       </form>

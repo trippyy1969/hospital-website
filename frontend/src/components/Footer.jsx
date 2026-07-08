@@ -1,93 +1,121 @@
 import {
-FaFacebookF,
-FaInstagram,
-FaLinkedinIn,
-FaTwitter,
-FaEnvelope,
-FaLocationDot,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaXTwitter
 } from "react-icons/fa6";
 
-import { FaPhoneAlt } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaHeartbeat
+} from "react-icons/fa";
+
+import "../styles/global.css";
 
 function Footer() {
+
+  const scrollTo = (id) => {
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
+
     <footer className="footer">
 
       <div className="footer-container">
 
-        <div className="footer-column">
+        <div className="footer-about">
 
-          <h2>MedCare Hospital</h2>
+          <div className="footer-logo">
+
+            <FaHeartbeat />
+
+            <h2>Aurora Health</h2>
+
+          </div>
 
           <p>
-            Providing compassionate healthcare through experienced doctors,
-            advanced technology, and a patient-first approach. Our mission is
-            to help every individual lead a healthier and happier life.
+            Delivering compassionate, patient-centered healthcare with
+            experienced specialists, modern medical technology, and a
+            commitment to excellence. Your health is our highest priority.
           </p>
 
           <div className="social-icons">
 
-            <a href="#"><FaFacebookF /></a>
+            <a href="#">
+              <FaFacebookF />
+            </a>
 
-            <a href="#"><FaInstagram /></a>
+            <a href="#">
+              <FaInstagram />
+            </a>
 
-            <a href="#"><FaLinkedinIn /></a>
+            <a href="#">
+              <FaLinkedinIn />
+            </a>
 
-            <a href="#"><FaTwitter /></a>
+            <a href="#">
+              <FaXTwitter />
+            </a>
 
           </div>
 
         </div>
 
-        <div className="footer-column">
+        <div className="footer-links">
 
           <h3>Quick Links</h3>
 
-          <a href="#">Home</a>
+          <button onClick={() => scrollTo("home")}>Home</button>
 
-          <a href="#">Departments</a>
+          <button onClick={() => scrollTo("about")}>About</button>
 
-          <a href="#">Doctors</a>
+          <button onClick={() => scrollTo("departments")}>Departments</button>
 
-          <a href="#">Appointments</a>
+          <button onClick={() => scrollTo("doctors")}>Doctors</button>
 
-          <a href="#">Contact</a>
+          <button onClick={() => scrollTo("appointment")}>Appointments</button>
 
-        </div>
-
-        <div className="footer-column">
-
-          <h3>Our Services</h3>
-
-          <a href="#">Emergency Care</a>
-
-          <a href="#">Cardiology</a>
-
-          <a href="#">Neurology</a>
-
-          <a href="#">Orthopedics</a>
-
-          <a href="#">Laboratory Services</a>
+          <button onClick={() => scrollTo("contact")}>Contact</button>
 
         </div>
 
-        <div className="footer-column">
+        <div className="footer-contact">
 
           <h3>Contact</h3>
 
           <p>
-            <FaLocationDot />
-            Mumbai, Maharashtra
-          </p>
 
-          <p>
             <FaPhoneAlt />
+
             +91 98765 43210
+
           </p>
 
           <p>
+
             <FaEnvelope />
-            support@medcarehospital.com
+
+            support@aurorahealth.com
+
+          </p>
+
+          <p>
+
+            <FaMapMarkerAlt />
+
+            Mumbai, Maharashtra, India
+
+          </p>
+
+          <p>
+
+            Open 24 Hours • 7 Days
+
           </p>
 
         </div>
@@ -96,13 +124,14 @@ function Footer() {
 
       <div className="footer-bottom">
 
-        © 2026 MedCare Hospital.
-        All Rights Reserved.
+        © {new Date().getFullYear()} Aurora Health. All Rights Reserved.
 
       </div>
 
     </footer>
+
   );
+
 }
 
 export default Footer;

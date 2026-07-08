@@ -23,7 +23,7 @@ function Testimonials() {
       image:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500",
       review:
-        "Booking an appointment was simple, the consultation started on time, and the medical team made me feel completely comfortable. I would confidently recommend MedCare Hospital to my friends and family.",
+        "Booking an appointment was simple, the consultation started on time, and the medical team made me feel completely comfortable. I would confidently recommend Aurora Health  to my friends and family.",
     },
 
     {
@@ -50,7 +50,7 @@ function Testimonials() {
 
       <p>
         Every recovery journey is unique. Here's what some of our patients
-        have shared about their experience at MedCare Hospital.
+        have shared about their experience at Aurora Health.
       </p>
 
       <div className="testimonial-grid">

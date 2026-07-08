@@ -36,12 +36,15 @@ function DepartmentSection() {
 
             <p>{dept.description}</p>
 
-            <button>
-
-              Learn More
-
-              <FaArrowRight />
-
+            <button
+              onClick={() =>
+                document
+                .getElementById("appointment")
+                 ?.scrollIntoView({ behavior: "smooth" })
+              }
+              >
+                 Book Consultation
+                 <FaArrowRight />
             </button>
 
           </div>
